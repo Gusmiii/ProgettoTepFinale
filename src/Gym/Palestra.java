@@ -14,9 +14,9 @@ public class Palestra {
         accesso = new Semaphore(1);
         clientiTotali = 0;
 
-        stazioni.add(new Stazione("Tapis Roulant", 1000));
-        stazioni.add(new Stazione("Cyclette", 1500));
-        stazioni.add(new Stazione("Pesi", 2000));
+        stazioni.add(new Stazione("Squat", 2500));
+        stazioni.add(new Stazione("Stacco", 2000));
+        stazioni.add(new Stazione("Panca", 1500));
     }
 
     public void avviaSimulazione(int numClienti) {
@@ -24,10 +24,10 @@ public class Palestra {
 
         System.out.println("Inizio simulazione palestra con " + numClienti + " clienti e " + stazioni.size() + " stazioni.");
 
-        for (Stazione stazione : stazioni) {
+        for (int i = 0; i < stazioni.size(); i++) {
+            Stazione stazione = stazioni.get(i);
             new Thread(stazione).start();
         }
-
         for (int i = 1; i <= numClienti; i++) {
             Cliente cliente = new Cliente("Cliente-" + i, stazioni, accesso);
             new Thread(cliente).start();
@@ -49,7 +49,8 @@ public class Palestra {
 
     private void mostraStatistiche() {
         System.out.println("\nStatistiche di fine giornata:");
-        for (Stazione stazione : stazioni) {
+        for (int i = 0; i < stazioni.size(); i++) {
+            Stazione stazione = stazioni.get(i);
             System.out.println(stazione.getStatistiche());
         }
     }

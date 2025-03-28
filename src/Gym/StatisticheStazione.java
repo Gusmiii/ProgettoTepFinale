@@ -17,7 +17,6 @@ public class StatisticheStazione {
         return clientiServiti;
     }
 
-    @Override
     public String toString() {
         return nomeStazione + ": " + clientiServiti + " clienti serviti";
     }
